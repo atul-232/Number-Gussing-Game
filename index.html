@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A magical adventure-themed number guessing game. Discover the jackpot to unlock the vault.">
-  <title>The Alchemist's Vault | Magical Guessing Adventure</title>
+  <meta name="description" content="A simple and beautiful number guessing game. Guess the secret code to open the chest.">
+  <title>Number Guessing Game | Fun Guessing Adventure</title>
   <link rel="stylesheet" href="style.css">
   <script>
     window.addEventListener('error', function(e) {
@@ -45,7 +45,7 @@
 
     <!-- Login Window panel (revealed when gates slide open) -->
     <div class="intro-overlay-content hidden-element" id="login-overlay-container">
-      <h2 class="intro-title" id="intro-title-element">THE MYSTIC VAULT</h2>
+      <h2 class="intro-title" id="intro-title-element">NUMBER GUESSING GAME</h2>
       <p class="intro-desc" id="intro-typewriter"></p>
 
       <!-- Unified Login / Account selector form -->
@@ -53,23 +53,23 @@
         
         <!-- Existing accounts selector section -->
         <div id="existing-accounts-section">
-          <label class="form-label">Identify Existing Alchemist</label>
+          <label class="form-label">Select Your Account</label>
           <div class="accounts-list-scroll" id="login-accounts-list">
-            <!-- Clickable Alchemist card rows will be dynamically populated -->
+            <!-- Clickable player card rows will be dynamically populated -->
           </div>
-          <button class="btn btn-intro" id="btn-enter-vault" style="margin-top: 15px; display: none;">🔑 TAP TO ENTER VAULT</button>
+          <button class="btn btn-intro" id="btn-enter-vault" style="margin-top: 15px; display: none;">🔑 TAP TO ENTER GAME</button>
         </div>
 
         <div class="login-divider-text" id="login-divider-text">— OR —</div>
 
         <!-- Add account toggle button -->
-        <button class="btn btn-secondary" id="btn-toggle-register" style="margin-bottom: 10px; width: 100%; padding: 8px;">➕ Create New Alchemist</button>
+        <button class="btn btn-secondary" id="btn-toggle-register" style="margin-bottom: 10px; width: 100%; padding: 8px;">➕ Create New Profile</button>
 
         <!-- New Profile Register fields form -->
         <div id="register-fields-form" style="display: none;">
-          <input type="text" id="new-profile-name" class="form-input" placeholder="Alchemist name..." maxlength="12">
+          <input type="text" id="new-profile-name" class="form-input" placeholder="Enter your name..." maxlength="12">
           
-          <div class="avatar-label" style="margin-top: 12px; margin-bottom: 6px; text-align: center; color: #a0b3a7;">Select Avatar Attributes</div>
+          <div class="avatar-label" style="margin-top: 12px; margin-bottom: 6px; text-align: center; color: #a0b3a7;">Choose Profile Icon</div>
           <div class="avatar-grid" id="intro-avatar-grid">
             <button class="avatar-option active" data-avatar="🧙‍♂️">🧙‍♂️</button>
             <button class="avatar-option" data-avatar="🧝‍♀️">🧝‍♀️</button>
@@ -78,15 +78,15 @@
             <button class="avatar-option" data-avatar="🦊">🦊</button>
             <button class="avatar-option" data-avatar="🦉">🦉</button>
           </div>
-          <button class="btn btn-intro" id="btn-create-profile" style="padding: 10px;">✨ CREATE PROFILE</button>
+          <button class="btn btn-intro" id="btn-create-profile" style="padding: 10px;">✨ CREATE ACCOUNT</button>
         </div>
       </div>
     </div>
 
     <!-- Full-screen welcome greeting banner (Shown on successful login) -->
     <div class="welcome-banner-screen hidden-element" id="welcome-greeting-overlay">
-      <div class="welcome-text-glow" id="welcome-greeting-text">Welcome to The Decryption Game</div>
-      <div class="welcome-sub-glow">Vault link established... Initializing level configurations...</div>
+      <div class="welcome-text-glow" id="welcome-greeting-text">Welcome to the Number Guessing Game</div>
+      <div class="welcome-sub-glow">Connected... Loading game levels...</div>
     </div>
   </div>
 
@@ -116,8 +116,8 @@
 
       <!-- Action buttons -->
       <div style="display: flex; gap: 8px;">
-        <button id="help-toggle" class="help-icon-btn" aria-label="How to play" title="Vault Decryption Guide">📜</button>
-        <button id="settings-toggle" class="mute-btn-svg" aria-label="Open advanced settings" title="Advanced Settings">
+        <button id="help-toggle" class="help-icon-btn" aria-label="How to play" title="How to Play Guide">📜</button>
+        <button id="settings-toggle" class="mute-btn-svg" aria-label="Open advanced settings" title="Game Settings">
           <svg class="top-icon gear-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" fill="#888"/>
           </svg>
@@ -127,18 +127,18 @@
 
     <!-- Header Banner -->
     <header class="header-banner">
-      <h1 class="game-title">THE MYSTIC VAULT</h1>
+      <h1 class="game-title">NUMBER GUESSING GAME</h1>
       <div class="gold-divider">
         <span class="div-diamond">◆</span>
       </div>
-      <p class="subtitle">Decipher the ancient matrix</p>
+      <p class="subtitle">Guess the secret number to unlock the chest</p>
     </header>
 
     <!-- SCREEN 1: LOBBY -->
     <section id="lobby-screen" class="screen active">
       <div class="select-level-divider">
         <span class="left-arrow">⤛</span>
-        <span class="divider-text">Select Dungeon Level</span>
+        <span class="divider-text">Select Game Difficulty</span>
         <span class="right-arrow">⤜</span>
       </div>
       
@@ -151,7 +151,7 @@
             </svg>
           </div>
           <div class="diff-right">
-            <div class="diff-name">Whispering Woods</div>
+            <div class="diff-name">Easy Level</div>
             <div class="diff-range">1 to 50</div>
             <div class="diff-desc">❤️ 10 Hearts</div>
           </div>
@@ -165,7 +165,7 @@
             </svg>
           </div>
           <div class="diff-right">
-            <div class="diff-name">Lost Temple</div>
+            <div class="diff-name">Medium Level</div>
             <div class="diff-range">1 to 100</div>
             <div class="diff-desc">❤️ 7 Hearts</div>
           </div>
@@ -179,7 +179,7 @@
             </svg>
           </div>
           <div class="diff-right">
-            <div class="diff-name">Dragon's Lair</div>
+            <div class="diff-name">Hard Level</div>
             <div class="diff-range">1 to 250</div>
             <div class="diff-desc">❤️ 5 Hearts</div>
           </div>
@@ -193,7 +193,7 @@
             </svg>
           </div>
           <div class="diff-right">
-            <div class="diff-name">Abyssal Void</div>
+            <div class="diff-name">Expert Level</div>
             <div class="diff-range">1 to 500</div>
             <div class="diff-desc">❤️ 3 Hearts</div>
           </div>
@@ -210,9 +210,9 @@
     <!-- SCREEN 2: GAMEPLAY -->
     <section id="game-screen" class="screen">
       <div class="adventure-zone-header">
-        <span id="zone-badge" class="zone-badge badge-green">🌲 WHISPERING WOODS</span>
+        <span id="zone-badge" class="zone-badge badge-green">🌲 Easy Level</span>
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span id="timer-badge" class="timer-badge">⌛ 120s</span>
+          <span id="timer-badge" class="timer-badge">⏳ 120s</span>
           <div class="lives-container" id="hearts-container">
             <!-- Hearts will be injected here dynamically -->
           </div>
@@ -236,7 +236,7 @@
             <path d="M50 61 v5" stroke="#ffffff" stroke-width="2"></path>
           </svg>
         </div>
-        <p class="guess-hint-text" id="hint-message">Peer into the vault and make your choice...</p>
+        <p class="guess-hint-text" id="hint-message">Guess the secret number to open the chest...</p>
       </div>
 
       <!-- Current Guess Number Box -->
@@ -282,7 +282,7 @@
           <div class="shop-item-left">
             <span class="shop-item-emoji">🔮</span>
             <div class="shop-item-info">
-              <span class="shop-item-name">Dowsing Rod</span>
+              <span class="shop-item-name">Odd/Even Hint</span>
               <span class="shop-item-stats-text" id="dowsing-stats-text">Owned: 2 | Used: 0/1</span>
             </div>
           </div>
@@ -296,7 +296,7 @@
           <div class="shop-item-left">
             <span class="shop-item-emoji">👁️</span>
             <div class="shop-item-info">
-              <span class="shop-item-name">Crystal Ball</span>
+              <span class="shop-item-name">Range Hint</span>
               <span class="shop-item-stats-text" id="crystal-stats-text">Owned: 2 | Used: 0/1</span>
             </div>
           </div>
@@ -310,7 +310,7 @@
           <div class="shop-item-left">
             <span class="shop-item-emoji">⏳</span>
             <div class="shop-item-info">
-              <span class="shop-item-name">Time Warp (+1 ❤️)</span>
+              <span class="shop-item-name">Extra Life (+1 Heart)</span>
               <span class="shop-item-stats-text" id="timewarp-stats-text">Owned: 2 | Used: 0/1</span>
             </div>
           </div>
@@ -324,7 +324,7 @@
           <div class="shop-item-left">
             <span class="shop-item-emoji">⌛</span>
             <div class="shop-item-info">
-              <span class="shop-item-name">Hourglass (+10s)</span>
+              <span class="shop-item-name">Extra Time (+10s)</span>
               <span class="shop-item-stats-text" id="hourglass-stats-text">Owned: 2 | Used: 0/2</span>
             </div>
           </div>
@@ -336,13 +336,13 @@
 
       <!-- Large Cast Guess Button -->
       <button class="btn cast-guess-styled-btn" id="cast-guess-btn">
-        🪄 CAST GUESS
+        🪄 SUBMIT GUESS
       </button>
       
       <!-- Vault Readings Log Divider -->
       <div class="vault-readings-divider">
         <span class="left-arrow">⤛</span>
-        <span class="divider-text">VAULT READINGS LOG</span>
+        <span class="divider-text">GUESS HISTORY LOG</span>
         <span class="right-arrow">⤜</span>
       </div>
 
@@ -353,18 +353,18 @@
         </div>
       </div>
 
-      <button class="btn btn-secondary escape-styled-btn" id="game-quit-btn">🚪 Escape Dungeon</button>
+      <button class="btn btn-secondary escape-styled-btn" id="game-quit-btn">🚪 Exit Game</button>
     </section>
 
     <!-- SCREEN 3: OUTCOME SCREEN -->
     <section id="outcome-screen" class="screen overlay-screen">
       <div class="win-icon" id="outcome-icon">🏆</div>
-      <h2 class="outcome-title" id="outcome-title">JACKPOT UNLOCKED</h2>
-      <p id="outcome-msg">You unlocked the vault successfully!</p>
+      <h2 class="outcome-title" id="outcome-title">YOU WIN!</h2>
+      <p id="outcome-msg">You guessed the correct number successfully!</p>
 
       <div class="outcome-stat">
         <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2px;">GOLD FOUND</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2px;">GOLD EARNED</div>
           <div style="font-size: 1.1rem; font-weight: 700; color: var(--color-gold);" id="result-gold-earned">+100 Gold</div>
         </div>
         <div>
@@ -378,7 +378,7 @@
 
     <!-- SCREEN 4: LEADERBOARD -->
     <section id="leaderboard-screen" class="screen">
-      <h2 style="font-family: var(--font-display); text-align: center; color: #2d4a43; margin-bottom: 15px;">Dungeon Hall of Fame</h2>
+      <h2 style="font-family: var(--font-display); text-align: center; color: #2d4a43; margin-bottom: 15px;">High Scores Leaderboard</h2>
       
       <div class="leaderboard-list" id="leaderboard-list">
         <!-- Rows injected dynamically -->
@@ -391,7 +391,7 @@
   <!-- Profile Details & Stats Modal -->
   <div class="help-modal" id="profile-modal">
     <div style="overflow-y: auto; height: 85%;">
-      <h3>👤 Alchemist Profile Card</h3>
+      <h3>👤 Player Profile Stats</h3>
       
       <div class="profile-summary-header">
         <span id="modal-profile-avatar" class="profile-large-avatar">🧙‍♂️</span>
@@ -403,19 +403,19 @@
 
       <div class="profile-stats-grid">
         <div class="profile-stat-card">
-          <div class="stat-card-label">Vaults Decrypted</div>
+          <div class="stat-card-label">Games Won</div>
           <div class="stat-card-value" id="stats-wins">0</div>
         </div>
         <div class="profile-stat-card">
-          <div class="stat-card-label">Vaults Locked Out</div>
+          <div class="stat-card-label">Games Lost</div>
           <div class="stat-card-value" id="stats-losses">0</div>
         </div>
         <div class="profile-stat-card">
-          <div class="stat-card-label">Guesses Cast</div>
+          <div class="stat-card-label">Guesses Made</div>
           <div class="stat-card-value" id="stats-guesses">0</div>
         </div>
         <div class="profile-stat-card">
-          <div class="stat-card-label">Favorite Zone</div>
+          <div class="stat-card-label">Favorite Level</div>
           <div class="stat-card-value" id="stats-fav" style="font-size: 0.75rem;">None</div>
         </div>
       </div>
@@ -425,7 +425,7 @@
         <!-- Dyn. populated -->
       </div>
 
-      <h4 class="section-subtitle">🔄 Switch Alchemist Profile</h4>
+      <h4 class="section-subtitle">🔄 Switch Profile</h4>
       <div class="profile-switch-panel">
         <select id="modal-profile-select" class="form-select">
           <!-- Dynamically populated -->
@@ -438,13 +438,13 @@
 
       <button class="btn btn-secondary" id="btn-delete-profile" style="margin-top: 15px; background: var(--color-expert-bg); border-color: var(--color-expert-border); color: var(--color-expert); width: 100%; padding: 8px;">💀 Delete Profile</button>
     </div>
-    <button class="btn cast-guess-styled-btn" id="close-profile">Dismiss Profile</button>
+    <button class="btn cast-guess-styled-btn" id="close-profile">Close Profile</button>
   </div>
 
   <!-- Advanced Settings Modal Dialog -->
   <div class="help-modal" id="settings-modal">
     <div>
-      <h3>⚙️ Advanced Alchemist Settings</h3>
+      <h3>⚙️ Game Settings</h3>
       <div class="help-content">
         <div class="settings-option-row">
           <label class="settings-label" for="volume-slider">Master Volume</label>
@@ -456,16 +456,16 @@
 
         <div class="settings-option-row" style="margin-top: 20px;">
           <div style="display: flex; flex-direction: column;">
-            <label class="settings-label" style="margin-bottom: 2px;">Mystical Drone Hum</label>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">Play soft ambient synthesizers in background</span>
+            <label class="settings-label" style="margin-bottom: 2px;">Background Music</label>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">Play soft background music</span>
           </div>
           <input type="checkbox" id="ambient-toggle" class="settings-checkbox">
         </div>
 
         <div class="settings-option-row" style="margin-top: 20px;">
           <div style="display: flex; flex-direction: column;">
-            <label class="settings-label" style="margin-bottom: 2px;">Particle Density</label>
-            <span style="font-size: 0.72rem; color: var(--text-muted);">Adjust floating magical dust count</span>
+            <label class="settings-label" style="margin-bottom: 2px;">Screen Particles</label>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">Adjust background floating dust count</span>
           </div>
           <select id="particle-density-select" class="form-select" style="width: auto;">
             <option value="off">Off</option>
@@ -474,9 +474,9 @@
           </select>
         </div>
 
-        <h4 class="section-subtitle" style="margin-top: 30px;">System Parameters</h4>
-        <button class="btn btn-secondary" id="btn-clear-leaderboard" style="margin-bottom: 10px; width: 100%; border-color: #f2cccc; color: #c62828;">🧹 Clear All Scores</button>
-        <button class="btn btn-secondary" id="btn-factory-reset" style="width: 100%; background: var(--color-expert-bg); border-color: var(--color-expert-border); color: var(--color-expert);"> Factory Reset (Delete Profiles)</button>
+        <h4 class="section-subtitle" style="margin-top: 30px;">System Controls</h4>
+        <button class="btn btn-secondary" id="btn-clear-leaderboard" style="margin-bottom: 10px; width: 100%; border-color: #f2cccc; color: #c62828;">🧹 Reset Leaderboard</button>
+        <button class="btn btn-secondary" id="btn-factory-reset" style="width: 100%; background: var(--color-expert-bg); border-color: var(--color-expert-border); color: var(--color-expert);"> Delete All Accounts</button>
       </div>
     </div>
     <button class="btn cast-guess-styled-btn" id="close-settings">Save and Close</button>
@@ -485,38 +485,43 @@
   <!-- Help / Instructions Modal Dialog -->
   <div class="help-modal" id="help-modal">
     <div>
-      <h3>📜 Vault Decryption Guide</h3>
+      <h3>📜 How to Play Guide</h3>
       <div class="help-content">
-        <p>Your goal is to guess the secret vault code within the allowed attempts (Hearts ❤️).</p>
-        <p><strong>Difficulty Zones:</strong></p>
+        <p>Your goal is to guess the secret number in the allowed attempts (Hearts ❤️).</p>
+        <p><strong>Difficulty Levels:</strong></p>
         <ul>
-          <li><strong>Whispering Woods:</strong> 1-50, 10 attempts (Reward: 50🪙)</li>
-          <li><strong>Lost Temple:</strong> 1-100, 7 attempts (Reward: 100🪙)</li>
-          <li><strong>Dragon's Lair:</strong> 1-250, 5 attempts (Reward: 200🪙)</li>
-          <li><strong>Abyssal Void:</strong> 1-500, 3 attempts (Reward: 500🪙)</li>
+          <li><strong>Easy Level:</strong> 1-50, 10 attempts (Reward: 50🪙)</li>
+          <li><strong>Medium Level:</strong> 1-100, 7 attempts (Reward: 100🪙)</li>
+          <li><strong>Hard Level:</strong> 1-250, 5 attempts (Reward: 200🪙)</li>
+          <li><strong>Expert Level:</strong> 1-500, 3 attempts (Reward: 500🪙)</li>
         </ul>
-        <p><strong>Dungeon Tools (Shop):</strong></p>
-        <p><em>New profiles start with 2 uses of each item. Use them in matches subject to level usage limits.</em></p>
+        <p><strong>Hints & Tools (Shop):</strong></p>
+        <p><em>New accounts start with 2 free uses of each hint/tool. Use them in matches subject to level usage limits.</em></p>
         <ul>
-          <li><strong>Dowsing Rod:</strong> Checks if jackpot is Odd or Even.
+          <li><strong>Odd/Even Hint:</strong> Checks if secret number is Odd or Even.
             <ul>
               <li>Easy Limit: 1/match | Medium Limit: 2/match | Hard Limit: 3/match | Expert Limit: 4/match.</li>
             </ul>
           </li>
-          <li><strong>Crystal Ball:</strong> Narrows the range.
+          <li><strong>Range Hint:</strong> Narrows the guessing range.
             <ul>
               <li>Easy Limit: 1/match | Medium Limit: 2/match | Hard Limit: 3/match | Expert Limit: 4/match.</li>
             </ul>
           </li>
-          <li><strong>Time Warp:</strong> Adds 1 Heart.
+          <li><strong>Extra Life (+1 Heart):</strong> Restores 1 Heart.
             <ul>
               <li>Easy/Medium Limit: 1/match | Hard/Expert Limit: 2/match.</li>
+            </ul>
+          </li>
+          <li><strong>Extra Time (+10s):</strong> Adds 10 seconds.
+            <ul>
+              <li>Easy Limit: 2/match | Medium Limit: 3/match | Hard Limit: 4/match | Expert Limit: 5/match.</li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
-    <button class="btn cast-guess-styled-btn" id="close-help">Dismiss Guide</button>
+    <button class="btn cast-guess-styled-btn" id="close-help">Close Guide</button>
   </div>
 
   <!-- Load Modules -->

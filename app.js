@@ -3,20 +3,20 @@ import sound from './sound.js';
 
 // Game Configuration for Levels
 const STAGES = {
-  easy: { name: "Whispering Woods", min: 1, max: 50, lives: 10, reward: 50, badgeClass: "badge-green", icon: "🌲" },
-  medium: { name: "Lost Temple", min: 1, max: 100, lives: 7, reward: 100, badgeClass: "badge-blue", icon: "🏛️" },
-  hard: { name: "Dragon's Lair", min: 1, max: 250, lives: 5, reward: 200, badgeClass: "badge-purple", icon: "🐲" },
-  expert: { name: "Abyssal Void", min: 1, max: 500, lives: 3, reward: 500, badgeClass: "badge-red", icon: "🌀" }
+  easy: { name: "Easy Level", min: 1, max: 50, lives: 10, reward: 50, badgeClass: "badge-green", icon: "🌲" },
+  medium: { name: "Medium Level", min: 1, max: 100, lives: 7, reward: 100, badgeClass: "badge-blue", icon: "🏛️" },
+  hard: { name: "Hard Level", min: 1, max: 250, lives: 5, reward: 200, badgeClass: "badge-purple", icon: "🐲" },
+  expert: { name: "Expert Level", min: 1, max: 500, lives: 3, reward: 500, badgeClass: "badge-red", icon: "🌀" }
 };
 
 // Power-up Costs (Scales dynamically per stage difficulty, see getPowerUpCosts)
 // Achievements definition list
 const ACHIEVEMENTS = [
-  { id: 'first_win', icon: '🔑', title: 'First Decryption', desc: 'Unlock your very first matrix vault.' },
+  { id: 'first_win', icon: '🔑', title: 'First Win', desc: 'Win your very first game.' },
   { id: 'rich', icon: '💰', title: 'Gold Magnet', desc: 'Accumulate 500 or more Gold coins.' },
-  { id: 'expert_win', icon: '🌀', title: 'Abyssal Master', desc: 'Successfully decrypt the Abyssal Void.' },
-  { id: 'clutch', icon: '❤️', title: 'Clutch Lock', desc: 'Decrypt a vault on your final Heart life.' },
-  { id: 'flawless', icon: '✨', title: 'Flawless Decrypt', desc: 'Unlock a vault with zero wrong guesses.' }
+  { id: 'expert_win', icon: '🌀', title: 'Expert Master', desc: 'Successfully win on Expert level.' },
+  { id: 'clutch', icon: '❤️', title: 'Last Life Win', desc: 'Win a game on your final Heart life.' },
+  { id: 'flawless', icon: '✨', title: 'Perfect Win', desc: 'Win a game with zero wrong guesses.' }
 ];
 
 class Game {
@@ -89,9 +89,9 @@ class Game {
     
     const profileNames = Object.keys(this.profiles);
     if (profileNames.length === 0) {
-      this.typeText("Welcome to the Vault Matrix. Initiate decrypted link node. Create your Alchemist profile to store gold coins and high scores.");
+      this.typeText("Welcome to the Number Guessing Game. Create your profile card to store gold coins and high scores.");
     } else {
-      this.typeText("Decoding cipher connection... Select your Alchemist profile card and decipher the ancient locks.");
+      this.typeText("Choose your profile card below to start playing!");
       if (this.activeProfileName && this.profiles[this.activeProfileName]) {
         this.selectProfile(this.activeProfileName);
       } else {
@@ -301,7 +301,7 @@ class Game {
     this.saveProfiles();
     this.selectProfile(name);
     this.renderLoginAccounts();
-    this.showToast(`Alchemist ${name} created!`);
+    this.showToast(`Player ${name} created!`);
     return true;
   }
 
@@ -407,7 +407,7 @@ class Game {
 
     sound.playWinFanfare();
 
-    greetingText.textContent = `Welcome to the Vault Decryption, Alchemist ${ap.name}...`;
+    greetingText.textContent = `Welcome to the Guessing Game, ${ap.name}...`;
 
     const overlay = document.getElementById('welcome-greeting-overlay');
     overlay.classList.add('visible-element');
@@ -479,10 +479,10 @@ class Game {
       const btn = document.getElementById('btn-toggle-register');
       if (form.style.display === 'none') {
         form.style.display = 'block';
-        btn.textContent = "➖ Hide Creator Fields";
+        btn.textContent = "➖ Hide Creator Form";
       } else {
         form.style.display = 'none';
-        btn.textContent = "➕ Create New Alchemist";
+        btn.textContent = "➕ Create New Profile";
       }
     });
 
@@ -546,12 +546,12 @@ class Game {
       document.getElementById('btn-toggle-register').textContent = "➖ Hide Creator Fields";
 
       this.initIntroAnimations();
-      this.typeText("Initiating registry parameters. Choose Alchemist attributes...");
+      this.typeText("Create a new player account. Choose your profile avatar...");
     });
 
     // Delete profile trigger from modal
     document.getElementById('btn-delete-profile').addEventListener('click', () => {
-      if (confirm(`Are you sure you want to delete ${this.activeProfileName}? All stats and gold will be lost permanently.`)) {
+      if (confirm(`Are you sure you want to delete ${this.activeProfileName}? All gold and progress will be lost.`)) {
         profileModal.classList.remove('active');
         this.deleteProfile(this.activeProfileName);
       }
@@ -666,7 +666,7 @@ class Game {
 
     // Clear scores
     document.getElementById('btn-clear-leaderboard').addEventListener('click', () => {
-      if (confirm("Reset local High Scores? This will clear all alchemist records.")) {
+      if (confirm("Reset local High Scores? This will clear all player records.")) {
         sound.playClick();
         if (this.activeProfile) {
           this.activeProfile.highScores = [];
@@ -679,7 +679,7 @@ class Game {
 
     // Factory reset
     document.getElementById('btn-factory-reset').addEventListener('click', () => {
-      if (confirm("🚨 FACTORY RESET? This will delete all profiles and wipe all progress data permanently!")) {
+      if (confirm("🚨 DELETE ALL ACCOUNTS? This will delete all profiles and wipe all progress data permanently!")) {
         sound.playClick();
         localStorage.clear();
         window.location.reload();
@@ -889,8 +889,8 @@ class Game {
             <path d="M21 4H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM3 19V6h18v13H3z" fill="#bda169"/>
           </svg>
           <div class="history-row-text-block">
-            <div class="history-row-title">Vault decipher sequence started</div>
-            <div class="history-row-time">Dungeon: ${config.name}</div>
+            <div class="history-row-title">New game started</div>
+            <div class="history-row-time">Level: ${config.name}</div>
           </div>
         </div>
       </div>
@@ -1101,8 +1101,8 @@ class Game {
     
     if (type === 'dowsing') {
       const isEven = this.jackpotNumber % 2 === 0;
-      hintMsg.textContent = `🔮 Dowsing Rod: Vault value is ${isEven ? 'EVEN' : 'ODD'}!`;
-      this.addHistoryLog(`Dowsing: Vault code is ${isEven ? 'EVEN' : 'ODD'}`);
+      hintMsg.textContent = `🔮 Odd/Even Hint: Number is ${isEven ? 'EVEN' : 'ODD'}!`;
+      this.addHistoryLog(`Hint used: Number is ${isEven ? 'EVEN' : 'ODD'}`);
     } 
     
     else if (type === 'crystal') {
@@ -1111,8 +1111,8 @@ class Game {
       const lowBound = Math.max(config.min, this.jackpotNumber - Math.floor(Math.random() * rangeMargin));
       const highBound = Math.min(config.max, this.jackpotNumber + Math.floor(Math.random() * rangeMargin));
       
-      hintMsg.textContent = `🔮 Crystal Ball: Secret number is between ${lowBound} and ${highBound}!`;
-      this.addHistoryLog(`Crystal Ball: Narrowed: ${lowBound} to ${highBound}`);
+      hintMsg.textContent = `🔮 Range Hint: Number is between ${lowBound} and ${highBound}!`;
+      this.addHistoryLog(`Hint used: Number is between ${lowBound} and ${highBound}`);
     } 
     
     else if (type === 'timewarp') {
@@ -1127,8 +1127,8 @@ class Game {
       if (timerBadge && this.timeRemaining > 10) {
         timerBadge.classList.remove('warning');
       }
-      hintMsg.textContent = `⏳ Time Warp: Restored 1 Heart life & added +${added}s!`;
-      this.addHistoryLog(`Time Warp: Restored 1 Heart & +${added}s (Current: ${this.remainingLives})`);
+      hintMsg.textContent = `⏳ Extra Life: Got +1 Heart & +${added}s!`;
+      this.addHistoryLog(`Extra Life: Got +1 Heart & +${added}s (Current: ${this.remainingLives})`);
     }
     
     else if (type === 'hourglass') {
@@ -1140,8 +1140,8 @@ class Game {
       if (timerBadge && this.timeRemaining > 10) {
         timerBadge.classList.remove('warning');
       }
-      hintMsg.textContent = `⏳ Hourglass: Added +${added}s to the current countdown!`;
-      this.addHistoryLog(`Hourglass: Added +${added}s (Current time: ${this.timeRemaining}s)`);
+      hintMsg.textContent = `⏳ Extra Time: Added +${added}s to the timer!`;
+      this.addHistoryLog(`Extra Time: Added +${added}s (Current time: ${this.timeRemaining}s)`);
     }
   }
 
@@ -1257,9 +1257,9 @@ class Game {
 
     // Prepare outcome screens
     document.getElementById('outcome-icon').innerHTML = '🏆';
-    document.getElementById('outcome-title').innerHTML = 'JACKPOT UNLOCKED';
+    document.getElementById('outcome-title').innerHTML = 'YOU WIN!';
     document.getElementById('outcome-title').className = 'outcome-title win';
-    document.getElementById('outcome-msg').innerHTML = `You discovered the hidden vault value <strong>${this.jackpotNumber}</strong>!`;
+    document.getElementById('outcome-msg').innerHTML = `You guessed the correct number <strong>${this.jackpotNumber}</strong>!`;
     
     document.getElementById('result-gold-earned').textContent = `+${config.reward} Gold`;
     document.getElementById('result-score').textContent = totalScore;
@@ -1286,11 +1286,11 @@ class Game {
     if (isTimeout) {
       document.getElementById('outcome-icon').innerHTML = '⏰';
       document.getElementById('outcome-title').innerHTML = 'OUT OF TIME';
-      document.getElementById('outcome-msg').innerHTML = `The vault timed out and locked you out! The code was <strong>${this.jackpotNumber}</strong>.`;
+      document.getElementById('outcome-msg').innerHTML = `The game timed out! The secret number was <strong>${this.jackpotNumber}</strong>.`;
     } else {
       document.getElementById('outcome-icon').innerHTML = '💀';
       document.getElementById('outcome-title').innerHTML = 'OUT OF HEARTS';
-      document.getElementById('outcome-msg').innerHTML = `The vault locked you out. The code was <strong>${this.jackpotNumber}</strong>.`;
+      document.getElementById('outcome-msg').innerHTML = `You ran out of lives! The secret number was <strong>${this.jackpotNumber}</strong>.`;
     }
     document.getElementById('outcome-title').className = 'outcome-title lose';
     
