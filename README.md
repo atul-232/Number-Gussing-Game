@@ -1,27 +1,46 @@
-# Python Lottery Game
+# The Mystic Vault | Adventure Number Guessing Game
 
-A simple number guessing game built in Python.
+An adventure-themed number guessing game where you play the role of an alchemist decoding ancient vaults. Features a beautiful visual interface, progressive difficulty levels, gold rewards, shop power-ups, local leaderboard, and interactive audio feedback.
 
-## Description
+## Features
 
-The program generates a random number between 1 and 100. The user has to guess the correct number. The game provides hints to guess higher or lower until the correct number is found.
+- **4 Difficulty Zones**:
+  - *Whispering Woods* (Easy): Ranges 1-50, 10 Hearts.
+  - *Lost Temple* (Medium): Ranges 1-100, 7 Hearts.
+  - *Dragon's Lair* (Hard): Ranges 1-250, 5 Hearts.
+  - *Abyssal Void* (Expert): Ranges 1-500, 3 Hearts.
+- **Dungeon Shop / Power-ups**:
+  - *Dowsing Rod*: Checks if the jackpot is Odd/Even.
+  - *Crystal Ball*: Narrows down the guess bounds.
+  - *Time Warp*: Restores a lost Heart life.
+- **Dynamic Synthesized Audio**: Sound effects generated entirely inside the browser using the Web Audio API.
+- **Premium Aesthetics**: Glowing glassmorphism dashboard, particle background effects, and interactive treasure chest opening animations.
+- **Local Leaderboard**: Tracks your top 10 decryption scores.
 
-## Requirements
+## Play in Browser (Recommended)
 
-* Python 3
-* pyfiglet
-* colorama
+1. Launch a simple web server from the project directory:
+   ```bash
+   python3 -m http.server 8000
+   ```
+2. Open [http://localhost:8000](http://localhost:8000) in your web browser.
 
-## Installation
+---
+
+## Legacy Console Version (Python)
+
+A simple console-based number guessing game using `colorama` and `pyfiglet`.
+
+### Requirements
 
 ```bash
 python3 -m pip install pyfiglet colorama
 ```
 
-## Run
+### Run Command
 
 ```bash
-python3 lottery_game.py
+python3 code.py
 ```
 
 ## Author
